@@ -1,0 +1,37 @@
+{
+  "base": "/",
+  "appCount": 0,
+  "viewports": [
+    {
+      "width": 1440,
+      "pages": 7,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "pages": 7,
+      "noOverflow": true
+    },
+    {
+      "width": 320,
+      "pages": 7,
+      "noOverflow": true
+    },
+    {
+      "width": 768,
+      "pages": 7,
+      "noOverflow": true
+    }
+  ],
+  "checks": [
+    "Sticky header stays at top while scrolling",
+    "Mobile open, Escape/focus, outside click, navigation",
+    "Empty catalog without invented app listings",
+    "Contact email draft encoding and honest status",
+    "404 recovery",
+    "No-JavaScript navigation and app catalog",
+    "No browser JavaScript errors",
+    "Shared footer content consistent on every page",
+    "200% text enlargement without horizontal overflow"
+  ]
+}

@@ -1,39 +1,93 @@
-# SAVE SUPPLIERS
+# SAVE SUPPLIERS — original brief implementation
 
-Complete static website, inspired by the supplied FT reference. Original SAVE SUPPLIERS UI and shared page generator. No framework, external fonts, install step or runtime dependencies. Python 3.10+ is used only to build and preview. The published site is plain HTML, CSS, JavaScript and SVG.
+Original SAVE SUPPLIERS branding and a premium dark blue/gold interface, inspired by the reference site's navigation, spacing and app-oriented layout. The reference's branding, source and product descriptions are not used as this site's content.
 
-## Preview
+## Included
+
+- Home, Apps, About, Contact, Privacy, Terms and 404.
+- Sticky header, animated accessible mobile navigation, shared footer and keyboard focus styles.
+- Central app data with reusable cards, grid, buttons, headings and app detail template.
+- Responsive three/two/one-column grid, app search/categories and optional screenshots.
+- Detail pages, features, product CTA, related apps and clean lowercase routes generated from app records.
+- Unique metadata, Open Graph/X titles/descriptions, organization schema, favicon, production sitemap and robots.
+- GitHub Pages workflow with automatic domain and repository-path detection.
+- Plain HTML/CSS/JavaScript output with no browser dependencies, cookies or analytics.
+
+## Important current catalog state
+
+The original brief does not provide actual app names, descriptions, features or product URLs. `src/apps.json` therefore contains an empty catalog, and the site presents a polished empty state. No reference apps or invented SAVE SUPPLIERS products are advertised. Actual detail pages are generated as soon as real app records are added and the site is rebuilt.
+
+`fixtures/qa-apps.json` is strictly verification data and is never used by the normal build or deployment. It proves that three apps generate automatically, with one draft excluded. It is not a product catalog or a public demo.
+
+The requested temporary email `test@gmail.com` is used throughout and is centralized in `src/site.json`.
+
+## Upload to GitHub Pages
+
+The ZIP puts `index.html` and all website folders directly at its root, together with editable source and `.github` deployment configuration. Upload the ZIP's contents to the repository root, including `.github`; do not upload the ZIP itself or an extra enclosing folder. Use Settings → Pages → Source: GitHub Actions. Push to main or run the workflow manually. The workflow builds the actual production URL, canonical tags, sitemap and repository base path automatically.
+
+The root HTML files have relative links for ordinary page navigation and assets. The workflow is the recommended GitHub Pages deployment so production SEO and the 404 page use the correct public URL. A public URL has not been supplied, so the bundled preview intentionally uses noindex and does not invent canonical/sitemap domains.
+
+## Build and preview
+
+Python 3.10+ is required for authoring; published visitors need only a browser.
 
 ```sh
-python build.py
+python build.py --portable
 python verify.py
 python serve.py
 ```
 
-Open http://127.0.0.1:4173/. Use the local server instead of double-clicking HTML because the navigation uses website paths.
+Open http://127.0.0.1:4173/. Preview through a web server, rather than double-clicking HTML files, to use clean directory URLs.
 
-## Edit
+## Add an actual app
 
-- `src/site.json`: company name, email and optional public site URL.
-- `src/apps.json`: reusable app catalog. An entry generates a listing card and its own detail route. IDs must be unique lowercase URL slugs. Provide at least one app for the featured homepage panel.
-- `src/assets/site.css`: responsive theme, layout and interactions.
-- `src/assets/site.js`: mobile menu, catalog search/filter and contact email draft.
-- `build.py`: shared header, footer, app cards, page templates and content.
+Edit `src/apps.json` and rebuild. Example record shape:
 
-Rebuild after editing. `dist/` is generated output; edits there will be overwritten by the next build.
+```json
+[
+  {
+    "slug": "your-app-slug",
+    "name": "Actual app name",
+    "description": "A concise description of your actual product.",
+    "intro": "A longer overview of what this app does.",
+    "category": "Utilities",
+    "platform": "Android",
+    "status": "available",
+    "icon": "document",
+    "color": "blue",
+    "url": "https://your-actual-product-url.example",
+    "features": [
+      {"title": "Actual feature", "text": "Explain a confirmed app capability."}
+    ]
+  }
+]
+```
 
-## Initial content to confirm
+Replace all example values with real product information. Do not paste unconfirmed URLs into the catalog.
 
-The two initial app records are adapted from the supplied reference ZIP: All Document Reader and Quit Vape & Pouches. They are not independently verified SAVE SUPPLIERS products. Confirm their names, features and ownership or replace the records with your actual apps before publishing.
+- `slug`: unique lowercase words separated by hyphens; creates `/apps/your-app-slug/`.
+- `status`: `available`, `coming-soon`, or `draft`. Drafts do not generate public cards, routes or sitemap entries.
+- `url`: actual HTTPS Open App link. `storeUrl` can instead supply a Google Play listing.
+- `privacyUrl`: optional actual HTTPS app-specific privacy policy. Website privacy is not a substitute.
+- `icon`: simple `document` or `leaf` line icon; `color`: `blue`, `gold`, `purple` or `lime`.
+- `iconPath`: optional local path such as `assets/icons/my-app.png`; put the file in `src/assets/icons/`.
+- `screenshots`: optional list of objects with local `path`, descriptive `alt` and optional `caption`. Save originals in `src/assets/`.
+- `formats` and `note`: optional support details.
 
-`test@gmail.com` is the contact address carried forward from the earlier project context. Replace it with your actual support address before publishing. Empty `storeUrl` and `privacyUrl` fields are intentional: the site shows a support action instead of a fabricated download link, and never presents website privacy as an app policy. Add actual HTTPS store and app policy URLs when available; their buttons will appear automatically.
+A coming-soon or unlinked app has an honest contact action. Real links create real CTAs; no fabricated download buttons are shown.
 
-The contact form opens a correctly encoded email draft. It does not claim to send messages and has no server or database. Without an email client, visitors can use the displayed email address. With JavaScript disabled, all navigation and app content remain available, with a direct email fallback.
+## Contact and policies
 
-Website policies describe this static implementation. They must be updated if you add tracking, cookies, a submission backend or payments. App-specific policies need to reflect the actual apps.
+Contact prepares an encoded email draft, with validation and direct-email fallback. It does not send email on your behalf or store submitted messages. Website policies describe the static site and must be updated if you add tracking, payments or a backend. App-specific policies depend on actual app behavior.
 
-## Production SEO
+## Verification
 
-The bundled build is a local preview and intentionally uses noindex until a real public URL is supplied. Canonicals, Open Graph URLs, sitemap URLs and robots are generated from that URL; no domain is invented. The workflow supplies the GitHub Pages URL automatically. Social metadata includes titles and descriptions; no social image is claimed.
+See `QA-REPORT.md` and `qa/production/browser-report.json`. The optional `browser-checks.cjs` requires Playwright and a browser installed locally. Standard build and internal-link checks require no Python packages. The separate architecture verification build can be reproduced with:
 
-See `DEPLOY-GITHUB-PAGES.md` for deployment. No website has been published by preparing this ZIP.
+```sh
+python build.py --qa --apps-data fixtures/qa-apps.json --base /save-suppliers/ --site-url https://example.github.io/save-suppliers
+python verify.py --qa
+python serve.py --qa --port 4181
+```
+
+This writes `.qa-dist/`, never `dist/`. The test domain is used only to verify correct URL generation. No live deployment was performed.

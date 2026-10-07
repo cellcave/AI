@@ -3,16 +3,22 @@ const menu = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("#primary-nav");
 if (menu && navigation) {
   document.documentElement.classList.add("js");
+  const desktop = window.matchMedia("(min-width: 761px)");
+  const syncMenuAccess = () => {
+    navigation.inert = !desktop.matches && !navigation.classList.contains("is-open");
+  };
   const closeMenu = (focus = false) => {
     navigation.classList.remove("is-open");
     menu.setAttribute("aria-expanded", "false");
     menu.setAttribute("aria-label", "Open menu");
+    syncMenuAccess();
     if (focus) menu.focus();
   };
   menu.addEventListener("click", () => {
     const open = navigation.classList.toggle("is-open");
     menu.setAttribute("aria-expanded", String(open));
     menu.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    syncMenuAccess();
   });
   navigation.addEventListener("click", event => {
     if (event.target.closest("a")) closeMenu();
@@ -23,7 +29,8 @@ if (menu && navigation) {
   document.addEventListener("click", event => {
     if (!event.target.closest(".site-header")) closeMenu();
   });
-  window.matchMedia("(min-width: 761px)").addEventListener("change", () => closeMenu());
+  desktop.addEventListener("change", () => closeMenu());
+  syncMenuAccess();
 }
 const search = document.querySelector("#app-search");
 const filters = [...document.querySelectorAll("[data-filter]")];

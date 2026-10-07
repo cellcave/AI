@@ -5,12 +5,13 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
-ROOT = Path(__file__).resolve().parent / "dist"
-info = json.loads((ROOT / "build-info.json").read_text(encoding="utf-8"))
-BASE = info["base"]
 parser = argparse.ArgumentParser()
 parser.add_argument('--port', type=int, default=4173)
+parser.add_argument('--qa', action='store_true')
 args = parser.parse_args()
+ROOT = Path(__file__).resolve().parent / (".qa-dist" if args.qa else "dist")
+info = json.loads((ROOT / "build-info.json").read_text(encoding="utf-8"))
+BASE = info["base"]
 
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):

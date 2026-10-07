@@ -1,24 +1,32 @@
-# SAVE SUPPLIERS verification
+# SAVE SUPPLIERS — corrected original brief
 
-Verified 6 October 2026 in a real headless Microsoft Edge browser.
+Verified 7 October 2026 with Chromium through Google Chrome. The supplied reference ZIP and its desktop screenshot were studied for navigation, visual hierarchy, section spacing, app presentation, responsive structure and footer layout. The live reference URL could not be retrieved through the web tool; the supplied archive served as the reference.
 
-- 9 rendered HTML pages: home, catalog, 2 app details, about, contact, website privacy, terms and 404.
-- All pages checked at 320, 390, 768 and 1440 pixels; no horizontal overflow.
-- Desktop and mobile home screenshots visually inspected.
-- Mobile menu open/close, Escape with focus restoration, outside click and navigation passed.
-- Catalog search, empty results, category filter and reset passed.
-- Contact email draft includes encoded user input and displays instructions to send from an email client.
-- Unknown routes return a custom 404 and recover to home.
-- Navigation and app content remain available without JavaScript.
-- No browser JavaScript errors.
-- Shared asset links, route links, unique IDs, headings, metadata and sitemap checks passed.
-- Both `/` and `/save-suppliers/` builds passed static checks and the complete browser checks. The repository-path test used a local server; it was not deployed to GitHub.
-- JavaScript syntax validation passed.
+## Delivered website
 
-## Delivery scope
+- Original dark blue/gold SAVE SUPPLIERS branding; configurable requested `test@gmail.com`.
+- Seven public pages: Home, Apps, About, Contact, Privacy, Terms and 404.
+- Real HTML, CSS, JavaScript and SVG, with shared components and static build output.
+- Actual product details were not supplied in the original brief. The public catalog is empty, rather than using reference apps or invented products. Actual app detail routes are generated when real catalog entries are provided.
 
-Actual HTML, CSS, JavaScript, SVG assets, JSON catalog, shared components, static generator, built output, deployment instructions and GitHub Actions workflow are included. There are no third-party browser scripts or required runtime dependencies.
+## Checks passed
 
-The bundled output is the root-path preview build. Production canonical and sitemap URLs require the actual domain; the GitHub Pages workflow generates these automatically. Live deployment has not been tested because no destination repository was supplied.
+All public pages were checked at 320, 390, 768 and 1440 pixels. No unwanted horizontal overflow. A further 200% text-enlargement check passed on desktop and mobile. Desktop and mobile screenshots are included under `qa/production/`.
 
-App content comes from the supplied reference and must be confirmed for SAVE SUPPLIERS. The email is the earlier project address `test@gmail.com`; confirm it before launch. Store and app-policy links require actual URLs. The contact form uses email drafts; there is no backend submission service. Policies apply to this static website and do not replace app-specific policies.
+Sticky header behavior while scrolling, mobile navigation open/close, Escape with focus restoration, outside click, link navigation, contact draft encoding, 404 recovery and consistent footer content passed. Navigation remains usable without JavaScript. No browser JavaScript errors were observed. Closed mobile navigation is excluded from keyboard interaction through `inert`.
+
+Internal routes, asset files, anchors, unique IDs, page headings, metadata and sitemap XML checks passed. Public root output uses relative links to make ordinary navigation work under root or repository URLs. Production GitHub Pages builds generate the correct configured absolute base, canonical URLs and sitemap URLs.
+
+## App architecture verification
+
+A separate `.qa-dist/` build used three explicit QA records and one draft. It generated ten pages including three app detail pages and 404. Every test-build page passed the same viewport and 200% enlargement checks at `/save-suppliers/`. Search, category selection, reset, empty results, generated detail routes, feature cards, related apps and the real external-link CTA passed. The draft was excluded from public output. See `qa/architecture/browser-report.json`.
+
+The QA catalog is not used by ordinary builds, the GitHub workflow or the root public HTML. `.qa-dist/` is excluded from the ZIP. Adding real products requires only catalog information plus any actual image assets, followed by a build.
+
+## Current limits
+
+Actual app names, descriptions, features and product URLs are pending. No invented downloads, ratings or product ownership claims are present. App-specific privacy policy links must come from actual products.
+
+The bundled preview has no public domain, so it intentionally uses noindex and an empty sitemap URL list. The GitHub Pages workflow supplies the real deployment origin and generates production SEO. No live GitHub deployment was performed.
+
+Contact creates an email draft. It does not submit messages to a backend. Website policies describe that implementation.

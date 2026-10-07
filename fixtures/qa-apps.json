@@ -1,0 +1,39 @@
+[
+  {
+    "slug": "qa-one",
+    "name": "QA Test App One",
+    "description": "A verification record used only to test the reusable application architecture.",
+    "category": "Productivity",
+    "url": "https://example.com/qa-one",
+    "features": [
+      {"title": "A first capability", "text": "Verification text to exercise the shared feature component."},
+      {"title": "A second capability", "text": "Verification text to check responsive column behavior."},
+      {"title": "A third capability", "text": "Verification text to check how additional features are displayed."}
+    ]
+  },
+  {
+    "slug": "qa-two",
+    "name": "QA Test App Two With A Longer Title",
+    "description": "A separate record for testing a second category, longer titles and related app cards.",
+    "category": "Utilities",
+    "status": "coming-soon",
+    "color": "gold",
+    "features": [{"title": "Planned feature", "text": "Verification of a coming-soon application detail page."}]
+  },
+  {
+    "slug": "qa-three",
+    "name": "QA Test App Three",
+    "description": "A third verification record to check desktop, tablet and mobile grid columns.",
+    "category": "Productivity",
+    "platform": "Web",
+    "color": "purple",
+    "features": [{"title": "Another capability", "text": "Verification text for an additional application record."}]
+  },
+  {
+    "slug": "qa-draft",
+    "name": "Invisible Draft Test",
+    "description": "This must never appear in output, app counts or the sitemap.",
+    "category": "Utilities",
+    "status": "draft"
+  }
+]

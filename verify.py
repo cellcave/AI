@@ -1,11 +1,15 @@
 """Check the generated pages and all internal links without external dependencies."""
 import json
+import argparse
 import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-ROOT = Path(__file__).resolve().parent / "dist"
+parser = argparse.ArgumentParser()
+parser.add_argument('--qa', action='store_true')
+args = parser.parse_args()
+ROOT = Path(__file__).resolve().parent / (".qa-dist" if args.qa else "dist")
 info = json.loads((ROOT / "build-info.json").read_text(encoding="utf-8"))
 BASE = info["base"]
 errors = []
@@ -47,6 +51,14 @@ for file in pages:
         if parsed.scheme or parsed.netloc: continue
         if not parsed.path:
             if parsed.fragment and parsed.fragment not in p.ids: errors.append(f"{label}: missing anchor {value}")
+            continue
+        if not parsed.path.startswith('/') and info.get('portable'):
+            target = (file.parent / unquote(parsed.path)).resolve()
+            if not target.is_relative_to(ROOT.resolve()):
+                errors.append(f'{label}: relative link leaves output directory: {value}')
+                continue
+            if parsed.path.endswith('/') or target.is_dir(): target = target / 'index.html'
+            if not target.is_file(): errors.append(f'{label}: missing relative link: {value}')
             continue
         if not parsed.path.startswith(BASE):
             errors.append(f"{label}: URL escapes base path: {value}")
