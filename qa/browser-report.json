@@ -1,0 +1,32 @@
+{
+  "viewports": [
+    {
+      "width": 1440,
+      "pages": 9,
+      "noOverflow": true
+    },
+    {
+      "width": 390,
+      "pages": 9,
+      "noOverflow": true
+    },
+    {
+      "width": 320,
+      "pages": 9,
+      "noOverflow": true
+    },
+    {
+      "width": 768,
+      "pages": 9,
+      "noOverflow": true
+    }
+  ],
+  "checks": [
+    "Mobile open, Escape/focus, outside click, navigation",
+    "Search, empty state, category and reset",
+    "Contact email draft encoding and honest status",
+    "404 recovery",
+    "No-JavaScript navigation and app catalog",
+    "No browser JavaScript errors"
+  ]
+}

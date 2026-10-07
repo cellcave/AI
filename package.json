@@ -1,0 +1,10 @@
+{
+  "name": "save-suppliers-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "python build.py",
+    "preview": "python serve.py",
+    "check": "python verify.py"
+  }
+}

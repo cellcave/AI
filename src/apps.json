@@ -1,0 +1,40 @@
+[
+  {
+    "id": "all-document-reader",
+    "name": "All Document Reader",
+    "category": "Productivity",
+    "platform": "Android",
+    "icon": "document",
+    "color": "blue",
+    "description": "Your PDFs, documents, spreadsheets and presentations, together in one reading workflow.",
+    "intro": "Open, read and organize supported documents on your Android phone. From reports for work to notes for class, keep the files you need within reach.",
+    "features": [
+      {"title": "Read across formats", "text": "Open PDFs, Word documents, Excel spreadsheets, PowerPoint presentations and plain text files."},
+      {"title": "Find your documents", "text": "Locate supported files on your device through the file access you choose to grant."},
+      {"title": "Keep things organized", "text": "Bring finding, opening and organizing documents into a focused mobile workflow."}
+    ],
+    "formats": ["PDF", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "TXT"],
+    "note": "Complex formatting, encrypted documents and damaged files may affect how individual files open or display.",
+    "storeUrl": "",
+    "privacyUrl": ""
+  },
+  {
+    "id": "vape-less",
+    "name": "Quit Vape & Pouches",
+    "category": "Lifestyle",
+    "platform": "Android",
+    "icon": "leaf",
+    "color": "lime",
+    "description": "Keep your quit plan, daily logs and personal milestones in one place.",
+    "intro": "A personal tracking app for adults working towards quitting vaping or nicotine pouches. Keep your plan, daily entries and reminders together on your phone.",
+    "features": [
+      {"title": "Your plan, in one place", "text": "Record a quit date, step-down plan and daily limits, with a clear view of the information you enter."},
+      {"title": "Make each check-in count", "text": "Log daily use, view streaks and milestones, and see estimates based on your entries."},
+      {"title": "Build a daily routine", "text": "Use check-in reminders and a home-screen widget to stay connected with your personal progress."}
+    ],
+    "formats": [],
+    "note": "For adults of legal age. This app provides personal tracking and general information. It does not provide medical advice or emergency care.",
+    "storeUrl": "",
+    "privacyUrl": ""
+  }
+]

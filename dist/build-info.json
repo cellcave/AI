@@ -1,0 +1,15 @@
+{
+  "base": "/",
+  "siteUrl": "",
+  "routes": [
+    "",
+    "apps/",
+    "apps/all-document-reader/",
+    "apps/vape-less/",
+    "about/",
+    "contact/",
+    "privacy/",
+    "terms/"
+  ],
+  "appCount": 2
+}
